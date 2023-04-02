@@ -23,30 +23,6 @@ if(localStorage.getItem('maCheckbox') === 'true') {
 //checkbox1 fin
 
 
-//checkbox2
-var checkbox2 = document.createElement('input');
-checkbox2.type = 'checkbox';
-checkbox2.value = 'valeur';
-panelHeading.appendChild(checkbox2);
-
-
-checkbox2.addEventListener('change', function() {
-  if(this.checked) {
-    localStorage.setItem('maCheckbox2', 'true');
-  } else {
-    localStorage.setItem('maCheckbox2', 'false');
-  }
-});
-
-if(localStorage.getItem('maCheckbox2') === 'true') {
-  checkbox2.checked = true;
-} else {
-  checkbox2.checked = false;
-}
-
-//checkbox2 fin
-
-
 // Récupération du tableau de la page1
 let tableau = document.querySelector('table');
 
@@ -102,7 +78,6 @@ function estEntreHeures(heureDonnee, heureDebut, heureFin) {
 
 
 // retourne un objet avec le lien et si l'heure est dans l'intervalle
-// vrai fonction
 function retourLienEtBool(){
 	let heureglobale ="";
 	let heureglobalesansespaces ="";
@@ -148,33 +123,25 @@ async function VaSurLecours(){
 	}
 }
 
-
 //fonction qui valide la presence
 async function valideLaPresence(){
-	let cliquepresnece = false;
 	let span;
-	if(!cliquepresnece && detecteheure()){
+	if(detecteheure()){
 		await pause(2000);
 		span= document.getElementById("set-presence");
 		await pause(2000);
-		//console.log(span);
 		if(span != null){
 			span.click();
-			//let click = new Event('click');
-			//span.dispatchEvent(click);
-			cliquepresnece = true;
-			
+			await pause(3000);
+			location.replace("https://www.leonard-de-vinci.net/student/presences/");
 		}
 		else{
-			await pause(1000);
-			//console.log("test4");
-			//console.log(window.location.href);
 			await pause(5000);
 			location.reload();
 		}
 	}
 	await pause(3000);
-	window.location.href="https://www.leonard-de-vinci.net/student/presences/";
+	location.replace("https://www.leonard-de-vinci.net/student/presences/");
 }
 
 
@@ -186,7 +153,6 @@ function detecteheure(){
 	let heuredebut = "";
 	let heurefin = "";
 	heureglobale= lignes2[0].cells[1].innerHTML;
-	//console.log(heureglobale);
 	heureglobalesansespaces = heureglobale.replace(/ /g,'');
 	heuredebut = heureglobalesansespaces.substr(0,5);
 	heurefin = heureglobalesansespaces.substr(6,5);
@@ -201,9 +167,10 @@ function detecteheure(){
 
 async function sousmain(){
 	await pause(1000);
-	if (checkbox.checked) {
+	if (checkbox.checked && window.location.href=="https://www.leonard-de-vinci.net/student/presences/") {
 		while(!retourLienEtBool().estValide){
 			await pause(5000);
+			console.log(retourLienEtBool().estValide);
 			if (!checkbox.checked) {
 				break;
 			}
@@ -216,15 +183,20 @@ async function sousmain(){
 
 //code main final
 checkbox.addEventListener('change', sousmain);
+sousmain();
+
+
+
+// avec une checkbox
 async function mainpage2(){
-	if(checkbox2.checked &&window.location.href!="https://www.leonard-de-vinci.net/student/presences/"){
-		console.log("test");
+	if(checkbox.checked &&window.location.href!="https://www.leonard-de-vinci.net/student/presences/"){
 		await pause(5000);
 		await valideLaPresence();
 	}
 }
-checkbox2.addEventListener('change', mainpage2);
+checkbox.addEventListener('change', mainpage2);
 mainpage2();
 
-
-// va bien sur le cours, clique bien (mais pas de redirection sur le tebleau des cours). optimser pour tout automatiser
+// idée: ajouter numero dans la fonction lien et bool puis cree un tableau bool pour savoir la presence a ete validée
+//, si oui recuperer le numero i de la ligne et mettre mettre true dans le tableau a cet index.
+// Si on est dans l'intervalle de la ligne i et tab[i] = true alors ne pas aller sur la page du cours pour cocher la presence
