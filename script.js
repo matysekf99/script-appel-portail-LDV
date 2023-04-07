@@ -126,6 +126,11 @@ async function VaSurLecours(){
 //fonction qui valide la presence
 async function valideLaPresence(){
 	let span;
+	let messvalid = document.querySelector('.alert-success');
+	if (messvalid != null) {
+		var paragraphes = document.getElementsByClassName("alert alert-success");
+		var premierParagraphe = paragraphes[0].textContent.substring(0, 4);
+	}
 	if(detecteheure()){
 		await pause(2000);
 		span= document.getElementById("set-presence");
@@ -133,7 +138,11 @@ async function valideLaPresence(){
 		if(span != null){
 			span.click();
 			await pause(3000);
-			location.replace("https://www.leonard-de-vinci.net/student/presences/");
+		}
+		else if (premierParagraphe != null) {
+			checkbox.checked = false;
+			localStorage.setItem('maCheckbox', 'false');
+			window.location.replace("https://www.leonard-de-vinci.net/student/presences/");
 		}
 		else{
 			await pause(5000);
@@ -141,9 +150,8 @@ async function valideLaPresence(){
 		}
 	}
 	await pause(3000);
-	location.replace("https://www.leonard-de-vinci.net/student/presences/");
+	//window.location.replace("https://www.leonard-de-vinci.net/student/presences/");
 }
-
 
 
 //fct pour detecter l'heure sur la page 2
@@ -197,6 +205,3 @@ async function mainpage2(){
 checkbox.addEventListener('change', mainpage2);
 mainpage2();
 
-// idée: ajouter numero dans la fonction lien et bool puis cree un tableau bool pour savoir la presence a ete validée
-//, si oui recuperer le numero i de la ligne et mettre mettre true dans le tableau a cet index.
-// Si on est dans l'intervalle de la ligne i et tab[i] = true alors ne pas aller sur la page du cours pour cocher la presence
