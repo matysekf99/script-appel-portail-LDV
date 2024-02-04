@@ -1,4 +1,10 @@
-# script-appel-poratil-LDV
-installer l'extension: User JavaScript and CSS   
-lien chrome: https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=fr   
-copier le code dans l'extension et activer sur la page des présences   
+# script-appel-poratil-LDV    
+
+Pour automatiser l'appel, il faut:
+
+- Installer l'extension: User JavaScript and CSS  
+https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=fr   
+
+- Copier le code dans l'extension sur la page 'https://www.leonard-de-vinci.net/student/presences/'*
+
+- Ensuite, lancez le script en cochant la case à cocher qui apparaît sur la page. 
