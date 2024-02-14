@@ -125,28 +125,23 @@ async function VaSurLecours(){
 
 //fonction qui valide la presence
 async function valideLaPresence(){
-	console.log("dans valide presence");
-	let span;
 	let messvalid = document.querySelector('.alert-success');
-	
 	
 	if (messvalid != null) {
 		var paragraphes = document.getElementsByClassName("alert alert-success");
 		var premierParagraphe = paragraphes[0].textContent.substring(0, 4);
+		console.log(premierParagraphe);
 	}
 	if(detecteheure()){
 		await pause(2000);
-		console.log("a détecté l'heure");
-		span = document.getElementById("set-presence");
 		
 		var divBodyPresence = document.getElementById("body_presence");
 		var spansDansDiv = divBodyPresence.querySelectorAll("span");
 		var deuxiemeSpan = spansDansDiv[1];
 		
 		await pause(2000);
-		if(span != null){
+		if(deuxiemeSpan!=null){
 			console.log("avant de cliquer");
-			span.click();
 			deuxiemeSpan.click();
 			await pause(3000);
 		}
@@ -161,7 +156,6 @@ async function valideLaPresence(){
 		}
 	}
 	await pause(3000);
-	//window.location.replace("https://www.leonard-de-vinci.net/student/presences/");
 }
 
 
@@ -216,12 +210,3 @@ async function mainpage2(){
 checkbox.addEventListener('change', mainpage2);
 mainpage2();
 
-
-
-
-
-// ce que j'ai ajouté pour trouver le span
-
-// var divBodyPresence = document.getElementById("body_presence");
-// var spansDansDiv = divBodyPresence.querySelectorAll("span");
-// var deuxiemeSpan = spansDansDiv[1];
