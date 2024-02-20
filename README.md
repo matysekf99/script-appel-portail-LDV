@@ -7,4 +7,4 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 
 - Copier le code dans l'extension sur la page 'https://www.leonard-de-vinci.net/student/presences/'*
 
-- Ensuite, lancez le script en cochant la case à cocher qui apparaît sur la page. 
+- Ensuite, lancer le script en cochant la case à cocher qui apparaît sur la page. 
